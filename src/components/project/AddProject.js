@@ -1,58 +1,103 @@
 import React, { Component } from "react";
 
 class AddProject extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      projectName: "",
+      projectIdentifier: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    const newProject = {
+      projectName: this.state.projectName,
+      projectIdentifier: this.state.projectIdentifier,
+      description: this.state.description,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+    };
+    console.log(newProject);
+  }
+
   render() {
     return (
       <div>
         {}
 
-        <div class="project">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-8 m-auto">
-                <h5 class="display-4 text-center">
-                  Create / Edit Project form
-                </h5>
+        <div className="project">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 m-auto">
+                <h5 className="display-4 text-center">Create Project Form</h5>
                 <hr />
-                <form>
-                  <div class="form-group">
+                <form onSubmit={this.onSubmit}>
+                  <div className="form-group">
                     <input
                       type="text"
-                      class="form-control form-control-lg "
+                      className="form-control form-control-lg "
                       placeholder="Project Name"
+                      name="projectName"
+                      value={this.state.projectName}
+                      onChange={this.onChange}
                     />
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <input
                       type="text"
-                      class="form-control form-control-lg"
+                      className="form-control form-control-lg"
                       placeholder="Unique Project ID"
+                      name="projectIdentifier"
+                      value={this.state.projectIdentifier}
+                      onChange={this.onChange}
                     />
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <textarea
-                      class="form-control form-control-lg"
+                      className="form-control form-control-lg"
                       placeholder="Project Description"
+                      name="description"
+                      value={this.state.description}
+                      onChange={this.onChange}
                     ></textarea>
                   </div>
                   <h6>Start Date</h6>
-                  <div class="form-group">
+                  <div className="form-group">
                     <input
                       type="date"
-                      class="form-control form-control-lg"
-                      name="start_date"
+                      className="form-control form-control-lg"
+                      name="startDate"
+                      value={this.state.startDate}
+                      onChange={this.onChange}
                     />
                   </div>
                   <h6>Estimated End Date</h6>
-                  <div class="form-group">
+                  <div className="form-group">
                     <input
                       type="date"
-                      class="form-control form-control-lg"
-                      name="end_date"
+                      className="form-control form-control-lg"
+                      name="endDate"
+                      value={this.state.endDate}
+                      onChange={this.onChange}
                     />
                   </div>
 
-                  <input type="submit" class="btn btn-primary btn-block mt-4" />
+                  <input
+                    type="submit"
+                    className="btn btn-primary btn-block mt-4"
+                  />
                 </form>
               </div>
             </div>
